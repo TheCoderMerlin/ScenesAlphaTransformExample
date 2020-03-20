@@ -5,8 +5,8 @@ import Foundation
 class RectangleLayer : Layer {
     var radians = 0.0
 
-    override init() {
-        super.init()
+    init() {
+        super.init(name:"Rectangle")
 
         for _ in 0 ..< Int.random(in:10 ... 20) {
             let topLeft = Point(x:Int.random(in:0 ... 2000), y:Int.random(in:0 ... 2000))

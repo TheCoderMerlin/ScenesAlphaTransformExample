@@ -1,8 +1,5 @@
-# ScenesShellD
+# Alpha Transform Example
 
-An empty shell to serve as a starting point for using Scenes as a dynamically linked library.
-Before use, build Scenes and Igis and set the LD_LIBRARY_PATH environment variable to include the
-libraries' location.
+This is an example of how one may use Alpha and Transforms.
 
-Then use make.sh to build the project and run.sh to run the project.
-
+![Image of Alpha Transform Example](images/AlphaTransformExample.png)

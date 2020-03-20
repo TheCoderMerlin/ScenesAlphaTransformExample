@@ -5,11 +5,11 @@ class MainScene : Scene {
     let backgroundLayer : Layer
     let rectangleLayer : Layer
 
-    override init() {
+    init() {
         backgroundLayer = BackgroundLayer()
         rectangleLayer = RectangleLayer()
         
-        super.init()
+        super.init(name:"Main")
 
         insert(layer:backgroundLayer, at:.front)
         insert(layer:rectangleLayer, at:.front)

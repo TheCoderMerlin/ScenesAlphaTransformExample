@@ -1,19 +1,29 @@
 import Scenes
 import Igis
+import Foundation
 
-class RectangleEntity : RenderableEntityBase {
+class PatternRectangleEntity : RenderableEntity {
     let rectangle : Rectangle
     let velocity : Point
     let strokeStyle : StrokeStyle
+    let fillImage : Image
+    let fillPattern : Pattern
     let fillStyle : FillStyle
     let lineWidth : LineWidth
 
-    init(rect:Rect, velocity:Point, strokeStyle:StrokeStyle, fillStyle:FillStyle, lineWidth:LineWidth) {
+    init(rect:Rect, velocity:Point, strokeStyle:StrokeStyle, fillURL:URL, lineWidth:LineWidth) {
         self.rectangle = Rectangle(rect:rect, fillMode:.fillAndStroke)
         self.velocity = velocity
         self.strokeStyle = strokeStyle
-        self.fillStyle = fillStyle
+        self.fillImage = Image(sourceURL:fillURL)
+        self.fillPattern = Pattern(image:fillImage, repetition:.repeated)
+        self.fillStyle = FillStyle(pattern:self.fillPattern)
         self.lineWidth = lineWidth
+        super.init(name:"Pattern")
+    }
+
+    override func setup(canvasSize:Size, canvas:Canvas) {
+        canvas.setup(fillImage, fillPattern)
     }
 
     override func calculate(canvasSize:Size) {
@@ -30,6 +40,8 @@ class RectangleEntity : RenderableEntityBase {
     }
 
     override func render(canvas:Canvas) {
-        canvas.render(strokeStyle, fillStyle, lineWidth, rectangle)
+        if fillPattern.isReady {
+            canvas.render(strokeStyle, fillStyle, lineWidth, rectangle)
+        }
     }
 }

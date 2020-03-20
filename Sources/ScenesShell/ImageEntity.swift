@@ -2,15 +2,16 @@ import Scenes
 import Igis
 import Foundation
 
-class ImageEntity : RenderableEntityBase {
+class ImageEntity : RenderableEntity {
     let image : Image
 
     init(sourceURL:URL, renderMode:Image.RenderMode) {
         image = Image(sourceURL:sourceURL)
         image.renderMode = renderMode
+        super.init(name:"Image")
     }
 
-    override func setup(canvas:Canvas) {
+    override func setup(canvasSize:Size, canvas:Canvas) {
         canvas.setup(image)
     }
 
