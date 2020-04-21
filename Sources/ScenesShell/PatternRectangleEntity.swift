@@ -31,12 +31,12 @@ class PatternRectangleEntity : RenderableEntity {
         let containmentSet = canvasRect.containment(target:rectangle.rect)
 
         if containmentSet.contains(.beyondRight) {
-            rectangle.rect.topLeft.moveTo(x:-rectangle.rect.size.width, y:rectangle.rect.topLeft.y)
+            rectangle.rect.topLeft = Point(x:-rectangle.rect.size.width, y:rectangle.rect.topLeft.y)
         }
         if containmentSet.contains(.beyondBottom) {
-            rectangle.rect.topLeft.moveTo(x:rectangle.rect.topLeft.x, y:-rectangle.rect.size.height)
+            rectangle.rect.topLeft = Point(x:rectangle.rect.topLeft.x, y:-rectangle.rect.size.height)
         }
-        rectangle.rect.topLeft.moveBy(offset:velocity)
+        rectangle.rect.topLeft += velocity
     }
 
     override func render(canvas:Canvas) {
